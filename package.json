@@ -1,6 +1,6 @@
 {
   "name": "debug-eth-contract",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "debug-eth-contract  for quick eth contract debug in react",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -19,9 +19,6 @@
     "prepare": "npm run build",
     "copyStyles": "yarn shx cp -rf src/components/DebugContract/styles dist  ",
     "prepublishOnly": "npm run build && npm run prettier && npm run lint"
-  },
-  "peerDependencies": {
-    "react": ">=16"
   },
   "files": [
     "dist",
