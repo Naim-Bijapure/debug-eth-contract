@@ -1,9 +1,8 @@
-import { ethers } from 'ethers'
+// import { ethers } from 'ethers'
 import Collapse, { Panel } from 'rc-collapse'
 import React from 'react'
-// imported rc-collapse componenent css manually
-import './styles/rc-collapse.css'
 
+// imported rc-collapse componenent css manually
 // import 'rc-collapse/assets/index.css'
 
 import ContractData from './ContractData'
