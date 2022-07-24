@@ -1,5 +1,5 @@
-import { useContext } from "react";
+import { useContext } from 'react'
 
-import { TypeStoreState, DebugContractContext } from "./DebugContractProvider";
+import { TypeStoreState, DebugContractContext } from './DebugContractProvider'
 
-export const useDebugContractStore = (): TypeStoreState => useContext(DebugContractContext);
+export const useDebugContractStore = (): TypeStoreState => useContext(DebugContractContext)

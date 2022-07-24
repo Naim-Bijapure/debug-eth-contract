@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { ethers } from 'ethers'
 import React, { useEffect, useState } from 'react'
 
@@ -29,9 +30,9 @@ const ContractData: React.FC<IContractData> = ({ contractName, loadedContract })
   const fetchAllViews = async (viewsInputs: abiType): Promise<any> => {
     const viewsData = {}
     for (const inputObj of viewsInputs) {
-      //@ts-ignore
+      // @ts-ignore
       const viewValue = await loadedContract[inputObj.name]()
-      //@ts-ignore
+      // @ts-ignore
       viewsData[inputObj.name as string] = viewValue
     }
 

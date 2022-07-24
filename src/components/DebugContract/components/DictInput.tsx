@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -57,7 +58,7 @@ const DictInput: React.FC<IDictInput> = ({ methodName, inputData, loadedContract
      * on dictionary  or array value fetch
      * ---------------------*/
     try {
-      const argumets = Object.values(data as any)
+      const argumets = Object.values(data)
       const value = await loadedContract[methodName](...argumets)
 
       setDictValue(value.toString())

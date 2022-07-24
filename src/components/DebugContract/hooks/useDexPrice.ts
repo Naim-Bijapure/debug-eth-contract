@@ -1,8 +1,8 @@
 import { Token } from '@uniswap/sdk-core'
-//@ts-ignore
+// @ts-ignore
 import IUniswapV3Pool from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'
 import { Pool } from '@uniswap/v3-sdk'
-import { ethers } from 'ethers'
+import { ContractInterface, ethers } from 'ethers'
 import { useEffect, useRef, useState } from 'react'
 
 interface Immutables {
@@ -80,7 +80,7 @@ const useDexPrice = (): { ethPrice: number; usdPrice: number } => {
 
     const provider = new ethers.providers.JsonRpcProvider('https://rpc.scaffoldeth.io:48544')
 
-    const poolContract = new ethers.Contract(poolAddress, IUniswapV3PoolABI, provider)
+    const poolContract = new ethers.Contract(poolAddress, IUniswapV3PoolABI as ContractInterface, provider)
 
     const [immutables, state] = await Promise.all([getPoolImmutables(poolContract), getPoolState(poolContract)])
 

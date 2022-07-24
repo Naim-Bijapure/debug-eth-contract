@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-misused-promises */
@@ -42,7 +43,7 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({
     const multipleSubscriptions = {}
     inputData.map((data) => {
       if (data.type === 'address') {
-        //@ts-ignore
+        // @ts-ignore
         multipleSubscriptions[data.name] = watch(async (data, { name, type }) => {
           if (data[name as string]?.includes('.eth')) {
             await Sleep(500)
@@ -62,7 +63,7 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({
     return () => {
       inputData.map((data) => {
         if (data.type === 'address') {
-          //@ts-ignore
+          // @ts-ignore
           multipleSubscriptions[data.name]?.unsubscribe()
         }
       })
@@ -79,7 +80,7 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({
      * ---------------------*/
     const value = data['txValue']
     delete data['txValue']
-    const argumets = Object.values(data as any)
+    const argumets = Object.values(data)
     console.log('argumets: ', argumets, value)
     let tx, rcpt
 
