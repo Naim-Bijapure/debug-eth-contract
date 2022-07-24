@@ -1,6 +1,6 @@
 {
   "name": "debug-eth-contract",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "debug-eth-contract  for quick eth contract debug in react",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
