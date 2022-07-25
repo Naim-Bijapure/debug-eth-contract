@@ -74,9 +74,8 @@ const useDexPrice = (): { ethPrice: number; usdPrice: number } => {
   const fetchEthPrice = async (): Promise<any> => {
     //     uniswap sdk
 
-    // const poolAddress = process.env.NEXT_PUBLIC_UNISWAP_POOL_ADDRESS as string;
+    // const poolAddress = process.env.NEXT_PUBLIC_UNISWAP_POOL_ADDRESS as string
     const poolAddress = '0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8'
-
     const IUniswapV3PoolABI = IUniswapV3Pool.abi
 
     const provider = new ethers.providers.JsonRpcProvider('https://rpc.scaffoldeth.io:48544')

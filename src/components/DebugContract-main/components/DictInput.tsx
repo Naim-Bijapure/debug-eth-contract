@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -25,7 +26,7 @@ const DictInput: React.FC<IDictInput> = ({ methodName, inputData, loadedContract
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: {},
     reset,
     setValue,
   } = useForm<any>()
@@ -33,9 +34,9 @@ const DictInput: React.FC<IDictInput> = ({ methodName, inputData, loadedContract
   const isAddress = inputData.findIndex((data) => data.type === 'address')
 
   useEffect(() => {
-    let watchSubscribe
+    let watchSubscribe: any
     if (isAddress !== -1) {
-      watchSubscribe = watch(async (data, { name, type }) => {
+      watchSubscribe = watch(async (data, { name }) => {
         if (data[name as string]?.includes('.eth')) {
           await Sleep(500)
           setValue(methodName, '')
@@ -57,7 +58,7 @@ const DictInput: React.FC<IDictInput> = ({ methodName, inputData, loadedContract
      * on dictionary  or array value fetch
      * ---------------------*/
     try {
-      const argumets = Object.values(data as { any })
+      const argumets = Object.values(data)
       const value = await loadedContract[methodName](...argumets)
 
       setDictValue(value.toString())

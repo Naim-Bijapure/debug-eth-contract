@@ -1,7 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import { ethers } from 'ethers'
 import React, { useEffect, useState } from 'react'
 
@@ -18,7 +15,6 @@ interface IContractData {
 const ContractData: React.FC<IContractData> = ({ contractName, loadedContract }) => {
   // type abiType = typeof YourContract__factory.abi;
   // const yourContractAbi = YourContract__factory.abi;
-  // console.log("loadedContract.contractName: ", loadedContract);
 
   type abiType = any
   // const contractName = "YourContract";
@@ -26,7 +22,7 @@ const ContractData: React.FC<IContractData> = ({ contractName, loadedContract })
   //   contractName: contractName,
   // });
 
-  const [state, dispatch] = useDebugContractStore()
+  const [state] = useDebugContractStore()
 
   const [contractInputData, setContractInputData] = useState<abiType>()
   const [contractViewData, setContractsViewData] = useState<Record<string, string>>()
@@ -34,7 +30,9 @@ const ContractData: React.FC<IContractData> = ({ contractName, loadedContract })
   const fetchAllViews = async (viewsInputs: abiType): Promise<any> => {
     const viewsData = {}
     for (const inputObj of viewsInputs) {
+      // @ts-ignore
       const viewValue = await loadedContract[inputObj.name]()
+      // @ts-ignore
       viewsData[inputObj.name as string] = viewValue
     }
 
@@ -57,10 +55,12 @@ const ContractData: React.FC<IContractData> = ({ contractName, loadedContract })
 
       fetchAllViews(
         filteredFunctions.filter(
-          (data) =>
+          (data: any) =>
             ['view', 'pure'].includes(data.stateMutability as string) && data.inputs && data.inputs?.length === 0,
         ),
-      ).catch((err) => {})
+      ).catch((err: any) => {
+        console.log('err: ', err)
+      })
     }
   }, [loadedContract, state.refreshContract])
 
@@ -68,28 +68,28 @@ const ContractData: React.FC<IContractData> = ({ contractName, loadedContract })
    * filtering input data to variables, dicts or arrays, functions/methods
    * ---------------------*/
   const contractVariables: any[] = contractInputData
-    ?.sort((dataA, dataB) => dataA.inputs?.length - dataB.inputs?.length)
+    ?.sort((dataA: any, dataB: any) => dataA.inputs?.length - dataB.inputs?.length)
     .filter(
-      (data) =>
+      (data: any) =>
         ['view', 'pure'].includes(data.stateMutability as string) &&
         data.inputs !== undefined &&
         data.inputs?.length === 0,
     )
 
   const contractDicts: any[] = contractInputData
-    ?.sort((dataA, dataB) => dataA.inputs?.length - dataB.inputs?.length)
+    ?.sort((dataA: any, dataB: any) => dataA.inputs?.length - dataB.inputs?.length)
     .filter(
-      (data) =>
+      (data: any) =>
         data.inputs !== undefined &&
         data.inputs?.length > 0 &&
-        data.inputs.some((data) => Boolean(data.name) === false),
+        data.inputs.some((data: any) => Boolean(data.name) === false),
     )
 
   const contractFunctions: any[] = contractInputData
-    ?.sort((dataA, dataB) => dataA.inputs?.length - dataB.inputs?.length)
+    ?.sort((dataA: any, dataB: any) => dataA.inputs?.length - dataB.inputs?.length)
     .filter(
-      (data) =>
-        data.inputs !== undefined && data.inputs?.length > 0 && data.inputs.some((data) => data.name?.length > 0),
+      (data: any) =>
+        data.inputs !== undefined && data.inputs?.length > 0 && data.inputs.some((data: any) => data.name?.length > 0),
     )
 
   return (

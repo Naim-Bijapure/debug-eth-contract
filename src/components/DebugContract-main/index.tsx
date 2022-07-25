@@ -1,14 +1,16 @@
-import { ethers } from 'ethers'
+// import { ethers } from 'ethers'
 import Collapse, { Panel } from 'rc-collapse'
 import React from 'react'
-import 'rc-collapse/assets/index.css'
+
+// imported rc-collapse componenent css manually
+// import 'rc-collapse/assets/index.css'
 
 import ContractData from './ContractData'
 import DebugContractProvider, { contractsType } from './store/DebugContractProvider'
 import { useDebugContractStore } from './store/useDebugContractStore'
 
 const LoadContractList: React.FC = () => {
-  const [state, dispatch] = useDebugContractStore()
+  const [state] = useDebugContractStore()
 
   return (
     <>
@@ -28,7 +30,6 @@ const LoadContractList: React.FC = () => {
 }
 
 const Index: React.FC<{ contracts: contractsType }> = ({ contracts }) => {
-  console.log('contracts: ', contracts)
   return (
     <div>
       <DebugContractProvider contracts={contracts}>
